@@ -15,6 +15,5 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     #Client app urls
-    url(r'^client-form/', views.create_form),
     url(r'^client/', views.create),
 )

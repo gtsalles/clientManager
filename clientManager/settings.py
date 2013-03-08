@@ -1,7 +1,6 @@
 # Django settings for clientManager project.
 import os.path
 
-PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -105,9 +104,7 @@ ROOT_URLCONF = 'clientManager.urls'
 WSGI_APPLICATION = 'clientManager.wsgi.application'
 
 TEMPLATE_DIRS = (
-    '/home/gustavo/workspace/Web/clientManager/templates',
-    #os.path.join(os.path.dirname(__file__), 'templates').replace('\\','/'),
-    #PROJECT_PATH + '/templates/'
+    os.path.join(os.path.dirname(__file__), '../templates/').replace('\\','/'),
 )
 
 INSTALLED_APPS = (
