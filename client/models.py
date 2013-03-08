@@ -3,8 +3,8 @@ from django.db import models
 class Client(models.Model):
     name = models.CharField('Nome', max_length=100)
     sex = models.CharField('Sexo', max_length=1, choices=(('M', 'Masculino'), ('F', 'Feminino')))
-    birthday = models.DateField()
-    email = models.EmailField()
+    birthday = models.DateField('Data de Nascimento')
+    email = models.EmailField('Email')
     cpf = models.CharField('CPF', max_length=11)
     address = models.ForeignKey('Address')
 
