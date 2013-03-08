@@ -16,4 +16,6 @@ urlpatterns = patterns('',
 
     #Client app urls
     url(r'^client/', views.create),
+    url(r'^$', views.index),
+    url(r'^address/', views.address),
 )

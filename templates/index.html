@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block section %}
+    <section>
+        {% if clients %}
+            <table>
+                <caption>Lista de clientes</caption>
+                <thead>
+                    <tr>
+                        <td>Nome</td>
+                        <td>Sexo</td>
+                        <td>Data de nascimento</td>
+                        <td>Email</td>
+                        <td>CPF</td>
+                        <td>Endereço</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for client in clients %}
+                        <tr>
+                            <td>{{ client.name }}</td>
+                            <td>{{ client.sex }}</td>
+                            <td>{{ client.birthday }}</td>
+                            <td>{{ client.email }}</td>
+                            <td>{{ client.cpf }}</td>
+                            <td>{{ client.address }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+
+        <a href="/client/">Cadastrar Cliente</a>
+    </section>
+{% endblock %}

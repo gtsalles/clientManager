@@ -1,8 +1,10 @@
-from django import forms
+from django.forms import ModelForm
+from client.models import Client, Address
 
-class ClientForm(forms.Form):
-    name = forms.CharField(max_length=100)
-    email = forms.EmailField()
-    cpf = forms.CharField()
-    birthday = forms.DateField()
-    sex = forms.ChoiceField(choices=(('M', 'Masculino'), ('F', 'Feminino')))
+class ClientForm(ModelForm):
+    class Meta:
+        model = Client
+
+class AddressForm(ModelForm):
+    class Meta:
+        model = Address

@@ -1,13 +1,12 @@
 {% extends "base.html" %}
 
 {% block section %}
-    <section>
-        <form action="/client/" method="post">{% csrf_token %}
+    {% if form %}
+        <form action="" method="post">{% csrf_token %}
             <table>
                 {{ form.as_table }}
             </table>
-            <a href="/address/">Cadastrar endereço</a><br>
             <input type="submit" value="Criar">
         </form>
-    </section>
+    {% endif %}
 {% endblock %}
