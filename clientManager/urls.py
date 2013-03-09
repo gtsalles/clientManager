@@ -15,10 +15,11 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     #Client app urls
-    url(r'^client/$', views.create_client),
     url(r'^$', views.index),
-    url(r'^address/$', views.address),
+    url(r'^client/$', views.create_client),
     url(r'^profile/(\d+)/$', views.profile),
-    url(r'^client/delete/(\d+)/$', views.delete_client),
     url(r'^client/edit/(\d+)/$', views.edit_client),
+    url(r'^client/delete/(\d+)/$', views.delete_client),
+
+    url(r'^address/$', views.address),
 )

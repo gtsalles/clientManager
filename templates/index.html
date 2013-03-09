@@ -2,6 +2,9 @@
 
 {% block section %}
     <section>
+        {% if message %}
+            {{ message }}
+        {% endif %}
         {% if clients %}
             <table>
                 <caption>Lista de clientes</caption>

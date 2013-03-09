@@ -1,4 +1,5 @@
 from django.db import models
+from django.http import re
 
 class Client(models.Model):
     name = models.CharField('Nome', max_length=100)
@@ -7,6 +8,7 @@ class Client(models.Model):
     email = models.EmailField('Email')
     cpf = models.CharField('CPF', max_length=11)
     address = models.ForeignKey('Address')
+    phone = Phone.objects.filter(client_id=id)
 
     def __unicode__(self):
         return self.name

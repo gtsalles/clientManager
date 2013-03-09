@@ -7,8 +7,8 @@ from annoying.decorators import render_to
 # CRUD Cliente
 
 @render_to('index.html')
-def index(request):
-    return {'clients': Client.objects.all()}
+def index(request, message=''):
+    return {'clients': Client.objects.all(), 'message': message}
 
 @render_to('client/profile.html')
 def profile(request, idP):
@@ -24,7 +24,6 @@ def create_client(request):
     else:
         form = ClientForm()
     return {'form': form, 'action': '/client/', 'button': 'Adicionar'}
-    #return render(request, 'client/create.html', {'form': form, 'errors': errors})
 
 def save_client(request, form):
     c = Client.objects.create(
@@ -35,10 +34,7 @@ def save_client(request, form):
         cpf= form.cleaned_data['cpf'],
         address= form.cleaned_data['address'],
     )
-    if c:
-        # Fazer redirecionamento (que funcione) de volta para a index
-        return index(request)
-        #return redirect('http://localhost:8000/')
+    return index(request=request, message='Cliente cadastrado com sucesso')
 
 @render_to('client/create.html')
 def edit_client(request, id):
@@ -59,11 +55,11 @@ def update_client(request, form, client):
     client.cpf = form.cleaned_data['cpf']
     client.address = form.cleaned_data['address']
     client.save()
-    return index(request=request)
+    return index(request=request, message='Usuario atualizado com sucesso')
 
 def delete_client(request, idP):
     Client.objects.get(id=idP).delete()
-    return HttpResponse('Usuario excluido com sucesso')
+    return index(request=request, message='Usuario excluido com sucesso')
 
 @render_to('address/create.html')
 def address(request):
@@ -74,7 +70,6 @@ def address(request):
             save_address(form)
         else:
             errors.append('Dados invalidos')
-            return HttpResponse("Fuck1")
     else:
         form = AddressForm()
     return {'form': form, 'errors': errors, 'action': '/client/'}
