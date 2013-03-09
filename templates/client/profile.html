@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block section %}
+    <section>
+        {% if client %}
+            <table>
+                <thead>
+                    <tr>
+                        <td>Nome</td>
+                        <td>Sexo</td>
+                        <td>Data de nascimento</td>
+                        <td>Email</td>
+                        <td>CPF</td>
+                        <td>Fone</td>
+                        <td>Rua</td>
+                        <td>Numero</td>
+                        <td>Bairro</td>
+                        <td>Zona</td>
+                        <td>Cidade</td>
+                        <td>Estado</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ client.name }}</td>
+                        <td>{{ client.sex }}</td>
+                        <td>{{ client.birthday }}</td>
+                        <td>{{ client.email }}</td>
+                        <td>{{ client.cpf }}</td>
+                        {% if phone %}
+                            <td>{{ phone }}</td>
+                        {% else %}
+                            <td>Nenhum telefone cadastrado</td>
+                        {% endif %}
+                        <td>{{ client.address.street }}</td>
+                        <td>{{ client.address.number }}</td>
+                        <td>{{ client.address.district }}</td>
+                        <td>{{ client.address.zone }}</td>
+                        <td>{{ client.address.city }}</td>
+                        <td>{{ client.address.city.state }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <a href="/client/delete/{{ client.id }}">Excluir cliente</a>
+        {% endif %} 
+    </section>
+{% endblock %}
