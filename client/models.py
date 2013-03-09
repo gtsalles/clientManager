@@ -8,7 +8,6 @@ class Client(models.Model):
     email = models.EmailField('Email')
     cpf = models.CharField('CPF', max_length=11)
     address = models.ForeignKey('Address')
-    phone = Phone.objects.filter(client_id=id)
 
     def __unicode__(self):
         return self.name
