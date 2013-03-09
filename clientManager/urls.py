@@ -15,7 +15,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     #Client app urls
-    url(r'^client/$', views.create_user),
+    url(r'^client/$', views.create_client),
     url(r'^$', views.index),
     url(r'^address/$', views.address),
     url(r'^profile/(\d+)/$', views.profile),

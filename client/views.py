@@ -16,20 +16,17 @@ def profile(request, idP):
     return {'client': Client.objects.get(id=idP), 'phone': phone}
 
 @render_to('client/create.html')
-def create_user(request):
-    errors = []
+def create_client(request):
     if request.method == 'POST':
         form = ClientForm(request.POST)
         if form.is_valid():
-            save_client(form)
-        else:
-            errors.append('Dados invalidos')
+            save_client(request, form)
     else:
         form = ClientForm()
-    return {'form': form, 'errors': errors}
+    return {'form': form, 'action': '/client/', 'button': 'Adicionar'}
     #return render(request, 'client/create.html', {'form': form, 'errors': errors})
 
-def save_client(form):
+def save_client(request, form):
     c = Client.objects.create(
         name= form.cleaned_data['name'],
         sex= form.cleaned_data['sex'],
@@ -40,24 +37,29 @@ def save_client(form):
     )
     if c:
         # Fazer redirecionamento (que funcione) de volta para a index
-        return redirect('http://localhost:8000/')
+        return index(request)
+        #return redirect('http://localhost:8000/')
 
 @render_to('client/create.html')
-def edit_client(request, idP):
-    c = Client.objects.get(id=idP)
-    errors = []
+def edit_client(request, id):
+    c = Client.objects.get(id=id)
     if request.method == 'POST':
         form = ClientForm(request.POST)
         if form.is_valid():
-            update_client(form, idP)
-        else:
-            errors.append('Dados invalidos')
+            update_client(request, form, c)
     else:
         form = ClientForm(instance=c)
-    return {'form': form, 'errors': errors, 'action': '/update/'+idP}
+    return {'form': form, 'action': '/client/edit/'+id+'/', 'button': 'Editar'}
 
-def update_client(form, idP):
-    Client.objects.get(id=idP).update(form.POST)
+def update_client(request, form, client):
+    client.name = form.cleaned_data['name']
+    client.sex = form.cleaned_data['sex']
+    client.birthday = form.cleaned_data['birthday']
+    client.email = form.cleaned_data['email']
+    client.cpf = form.cleaned_data['cpf']
+    client.address = form.cleaned_data['address']
+    client.save()
+    return index(request=request)
 
 def delete_client(request, idP):
     Client.objects.get(id=idP).delete()
