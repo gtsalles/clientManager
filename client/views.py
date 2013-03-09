@@ -11,16 +11,17 @@ def index(request, message=''):
     return {'clients': Client.objects.all(), 'message': message}
 
 @render_to('client/profile.html')
-def profile(request, idP):
-    phone = Phone.objects.filter(client_id=idP)
-    return {'client': Client.objects.get(id=idP), 'phone': phone}
+def profile(request, id):
+    return {'client': Client.objects.get(id=id)}
 
 @render_to('client/create.html')
 def create_client(request):
     if request.method == 'POST':
         form = ClientForm(request.POST)
         if form.is_valid():
-            form.save()
+            c = form.save()
+            c.phone_set.create(number=request.POST['phone'])
+            c.save()
             return HttpResponseRedirect('/')
     else:
         form = ClientForm()
@@ -38,13 +39,14 @@ def edit_client(request, id):
         form = ClientForm(instance=c)
     return {'form': form, 'action': '/client/edit/'+id+'/', 'button': 'Editar'}
 
-def delete_client(request, idP):
-    Client.objects.get(id=idP).delete()
+def delete_client(request, id):
+    Client.objects.get(id=id).delete()
     return index(request=request, message='Usuario excluido com sucesso')
+
+# CRUD Endereco
 
 @render_to('address/create.html')
 def address(request):
-    errors = []
     if request.method == 'POST':
         form = AddressForm(request.POST)
         if form.is_valid():
@@ -52,4 +54,20 @@ def address(request):
             return HttpResponseRedirect('/client/')
     else:
         form = AddressForm()
-    return {'form': form, 'errors': errors, 'action': '/client/'}
+    return {'form': form}
+
+@render_to('address/create.html')
+def edit_address(request, id):
+    a = Address.objects.get(id=id)
+    if request.method == 'POST':
+        form = AddressForm(request.POST, instance=a)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/client/')
+    else:
+        form = AddressForm(instance=a)
+    return {'form': form, 'action': '/address/edit/'+id+'/', 'button': 'Editar'}
+
+def delete_address(request, id):
+    Address.objects.get(id=id).delete()
+    return index(request=request, message='Endereco excluido com sucesso')

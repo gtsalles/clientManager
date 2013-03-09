@@ -1,5 +1,4 @@
 from django.db import models
-from django.http import re
 
 class Client(models.Model):
     name = models.CharField('Nome', max_length=100)

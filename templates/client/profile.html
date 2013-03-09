@@ -27,11 +27,7 @@
                         <td>{{ client.birthday }}</td>
                         <td>{{ client.email }}</td>
                         <td>{{ client.cpf }}</td>
-                        {% if phone %}
-                            <td>{{ phone }}</td>
-                        {% else %}
-                            <td>Nenhum telefone cadastrado</td>
-                        {% endif %}
+                        <td>{{ client.phone_set.all }}</td>
                         <td>{{ client.address.street }}</td>
                         <td>{{ client.address.number }}</td>
                         <td>{{ client.address.district }}</td>

@@ -2,11 +2,11 @@
 
 {% block section %}
     {% if form %}
-        <form action="" method="post">{% csrf_token %}
+        <form action="{{ action }}" method="post">{% csrf_token %}
             <table>
                 {{ form.as_table }}
             </table>
-            <input type="submit" value="Criar">
+            <input type="submit" value="{{ button }}">
         </form>
     {% endif %}
 {% endblock %}
