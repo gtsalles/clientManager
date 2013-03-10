@@ -1,0 +1,19 @@
+.right{
+    float: right;
+}
+
+.left{
+    float: left;
+}
+
+.clear{
+    clear: both;
+}
+
+#teste{
+    background-color: blue;
+}
+
+.red{
+    color: red;
+}

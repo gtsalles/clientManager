@@ -54,7 +54,7 @@ def address(request):
             return HttpResponseRedirect('/client/')
     else:
         form = AddressForm()
-    return {'form': form}
+    return {'form': form, 'button': 'Criar'}
 
 @render_to('address/create.html')
 def edit_address(request, id):

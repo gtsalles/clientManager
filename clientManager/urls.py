@@ -1,4 +1,5 @@
 from django.conf.urls import patterns, include, url
+from django.views.static import serve
 from client import views
 from django.contrib import admin
 admin.autodiscover()
