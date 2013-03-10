@@ -25,4 +25,7 @@ urlpatterns = patterns('',
     url(r'^address/$', views.address),
     url(r'^address/edit/(\d+)/$', views.edit_address),
     url(r'^address/delete/(\d+)/$', views.delete_address),
+
+    url(r'^teste/$', views.teste),
+    url(r'^export/$', views.export),
 )
