@@ -6,7 +6,7 @@
             {{ message }}
         {% endif %}
         {% if clients %}
-            <table id="table-clients" class="table table-bordered">
+            <table id="table-clients" class="table table-bordered table-condensed table-hover">
                 <caption>Lista de clientes</caption>
                 <thead>
                     <tr>
@@ -32,13 +32,7 @@
                 </tbody>
             </table>
         {% endif %}
-        <div class="clear"></div>
-        <a href="/client/" class="right">Cadastrar Cliente</a>
-    </section>
 
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('table-clients').dataTable();
-        });
-    </script>
+        <a href="/client/">Cadastrar Cliente</a>
+    </section>
 {% endblock %}

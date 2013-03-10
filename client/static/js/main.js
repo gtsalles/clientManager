@@ -1,3 +1,8 @@
 $(document).ready(function(){
-    $('table-clients').dataTable();
+    $('#table-clients').dataTable({
+        "sScrollY": "200px",
+        "bPaginate": false,
+        "bScrollCollapse": true,
+        "bJQueryUI": true,
+    });
 });

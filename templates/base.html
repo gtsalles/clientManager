@@ -4,16 +4,16 @@
     <meta charset="utf-8">
     <title>Sistema para controle de clientes</title>
 
+    {# Stylesheets #}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/main.css">
     <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.css">
 
-    <script type="text/javascript" src="/static/js/jquery.js"></script>
-    <script type="text/javascript" src="/static/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="/static/js/main.js"></script>
-
-    <script type="text/javascript" src="{{ STATIC_URL }}bootstrap/js/bootstrap.js"></script>
+    {# Javascripts #}
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
+{#    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.js"></script>#}
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/main.js"></script>
 </head>
 <body>
     {% block header %}{% endblock %}
