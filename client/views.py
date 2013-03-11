@@ -43,7 +43,7 @@ def edit_client(request, id):
 
 def delete_client(request, id):
     Client.objects.get(id=id).delete()
-    return index(request=request, message='Usuario excluido com sucesso')
+    return HttpResponseRedirect('/')
 
 # CRUD Endereco
 
@@ -72,7 +72,7 @@ def edit_address(request, id):
 
 def delete_address(request, id):
     Address.objects.get(id=id).delete()
-    return index(request=request, message='Endereco excluido com sucesso')
+    return HttpResponseRedirect('/')
 
 # Exporting data
 
@@ -90,7 +90,6 @@ def export(request):
         email = client.email.encode('utf-8')
         cpf = client.cpf.encode('utf-8')
         phone = client.get_phones()
-        ad = client.address
         writer.writerow([name, sex, client.birthday, email, phone, cpf, client.address])
 
     return response

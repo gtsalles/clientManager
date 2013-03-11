@@ -16,9 +16,9 @@ $(document).ready(function(){
                 null,
                 null,
                 null,
-                {sSelector: '#dist_filter', type: 'select'},
+                {sSelector: '#dist_filter', type: 'text'},
                 {sSelector: '#zone_filter', type: 'text'},
-                {sSelector: '#city_filter', type: 'text'},
+                {sSelector: '#city_filter', type: 'text'}
             ]
         });
 
