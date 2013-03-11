@@ -3,7 +3,6 @@ from client.models import Client, Address, ClientSerializer
 from django.http import HttpResponseRedirect, HttpResponse
 from annoying.decorators import render_to
 import csv
-from django.template.defaultfilters import slugify
 
 # CRUD Cliente
 
@@ -73,98 +72,22 @@ def delete_address(request, id):
     Address.objects.get(id=id).delete()
     return index(request=request, message='Endereco excluido com sucesso')
 
-# Tentando exportar os dados
+# Exporting data
 
-def teste(request):
-    export(Client.objects.all())
-#    serializer = ClientSerializer()
-#    stream = serializer.serialize('csv', Client.objects.all(), indent=4)
-#
-#
-#    response = HttpResponse(content_type='text/csv')
-#    response['Content-Disposition'] = 'attachment; filename="clientes.csv"'
-#    writer = csv.writer(response)
-#
-#    f = file('clientes.csv', 'w')
-#    f.write(stream)
-#    f.close()
-#
-#    writer.writerow(f)
-#
-#    return response
-    #writer = csv.writer(response)
-    #writer.writerow(stream)
-    #return response
+def export(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="clientes.csv"'
+    writer = csv.writer(response)
 
+    clients = Client.objects.filter()
+    writer = csv.writer(response)
+    writer.writerow(['Nome', 'Sexo', 'Data de Nascimento', 'Email', 'CPF', 'Endereco'])
+    for client in clients:
+        name = client.name.encode('utf-8')
+        sex = client.sex.encode('utf-8')
+        email = client.email.encode('utf-8')
+        cpf = client.cpf.encode('utf-8')
+        ad = client.address
+        writer.writerow([name, sex, client.birthday, email, cpf, client.address])
 
-
-#    export(Client.objects.all().model)
-
-
-    #export(Client.objects.all())
-    #exporter.export(request, c, 'Client', 'Clients')
-
-#
-#    response = HttpResponse(content_type='text/csv')
-#    response['Content-Disposition'] = 'attachment; filename="teste.csv"'
-#    writer = csv.writer(response)
-#
-#    c = Client.objects.all()
-#
-#    writer.writerow(['Nome Sexo Data_Nascimento Email CPF Endereco'])
-#    row = []
-#    for client in c:
-#        #row.append([client.name, client.sex, client.address, client.birthday, client.email, client.cpf, client.address])
-#        row.append([client.name])
-#        writer.writerow(row)
-#
-#    return response
-
-
-# Erro na hora de ler as strings ('ascii' codec can't encode character u'\xf4' in position 3:)
-
-#def export(qs, fields=None):
-#    model = qs.model
-#    response = HttpResponse(mimetype='text/csv')
-#    response['Content-Disposition'] = 'attachment; filename=%s.csv' % slugify(model.__name__)
-#    writer = csv.writer(response)
-#    # Write headers to CSV file
-#    if fields:
-#        headers = fields
-#    else:
-#        headers = []
-#        for field in model._meta.fields:
-#            headers.append(field.name)
-#    writer.writerow(headers)
-#    # Write data to CSV file
-#    for obj in qs:
-#        row = []
-#        for field in headers:
-#            if field in headers:
-#                val = getattr(obj, field)
-#                if callable(val):
-#                    val = val()
-#                row.append(val)
-#        writer.writerow(row)
-#        # Return CSV file to browser as download
-#    return response
-
-#'QuerySet' object has no attribute 'META'
-#def export(model):
-#    response = HttpResponse(mimetype='text/csv')
-#    response['Content-Disposition'] = 'attachment; filename=%s.csv' #% slugify(model.__name__)
-#    writer = csv.writer(response)
-#    # Write headers to CSV file
-#    headers = []
-#    for field in model._meta.fields:
-#        headers.append(field.name)
-#    writer.writerow(headers)
-#    # Write data to CSV file
-#    print model.objects.all()
-#    for obj in model.objects.all().order_by("id"):
-#        row = []
-#        for field in model._meta.fields:
-#            row.append(getattr(obj, field.name))
-#        writer.writerow(row)
-#        # Return CSV file to browser as download
-#    return response
+    return response
