@@ -2,3 +2,7 @@
 .left{ float: left; }
 .clear{ clear: both; }
 .no_display{ display: none; }
+
+#add_phone{
+    margin: 10px;
+}

@@ -7,7 +7,7 @@ class Client(models.Model):
     birthday = models.DateField('Data de Nascimento')
     email = models.EmailField('Email')
     cpf = models.CharField('CPF', max_length=11)
-    address = models.ForeignKey('Address')
+    address = models.ForeignKey('Address', verbose_name='Endereco')
     indicator = models.ForeignKey('Client', blank=True, null=True, verbose_name='Quem o indicou?')
 
     def get_phones(self):
@@ -25,7 +25,7 @@ class Address(models.Model):
     number = models.IntegerField('Numero')
     district = models.CharField('Bairro', max_length=50)
     zone = models.CharField('Zona', max_length=50)
-    city = models.ForeignKey('City')
+    city = models.ForeignKey('City', verbose_name='Cidade')
 
     def __unicode__(self):
         return u'%s %s, %s, %s - %s' % (self.street, self.number, self.district, self.city, self.city.state)
@@ -35,7 +35,7 @@ class Address(models.Model):
 
 class City(models.Model):
     name = models.CharField('Nome', max_length=50)
-    state = models.ForeignKey('State')
+    state = models.ForeignKey('State', verbose_name='Estado')
 
     def __unicode__(self):
         return self.name
