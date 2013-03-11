@@ -1,4 +1,5 @@
 from django.db import models
+from serializers import ModelSerializer
 
 class Client(models.Model):
     name = models.CharField('Nome', max_length=100)
@@ -7,6 +8,7 @@ class Client(models.Model):
     email = models.EmailField('Email')
     cpf = models.CharField('CPF', max_length=11)
     address = models.ForeignKey('Address')
+    indicator = models.ForeignKey('Client', blank=True, null=True, verbose_name='Quem o indicou?')
 
     def __unicode__(self):
         return self.name
@@ -56,3 +58,7 @@ class Phone(models.Model):
 
     class Meta:
         ordering = ['number']
+
+class ClientSerializer(ModelSerializer):
+    class Meta:
+        model = Client
