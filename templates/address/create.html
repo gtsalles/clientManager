@@ -2,7 +2,7 @@
 
 {% block section %}
     {% if form %}
-        <form action="{{ action }}" method="post">{% csrf_token %}
+        <form action="{{ action }}" method="post" class="container wrapper">{% csrf_token %}
             <table>
                 {{ form.as_table }}
             </table>

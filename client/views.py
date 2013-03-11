@@ -27,7 +27,7 @@ def create_client(request):
             return HttpResponseRedirect('/')
     else:
         form = ClientForm()
-    return {'form': form, 'action': '/client/', 'button': 'Adicionar'}
+    return {'form': form, 'action': '/client/', 'button': 'Salvar'}
 
 @render_to('client/create.html')
 def edit_client(request, id):

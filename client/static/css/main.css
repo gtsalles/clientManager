@@ -1,8 +1,35 @@
-.right{ float: right; }
-.left{ float: left; }
-.clear{ clear: both; }
-.no_display{ display: none; }
+.right { float: right; }
+.left { float: left; }
+.clear { clear: both; }
+.no_display { display: none; }
+body { height: 100%; }
 
-#add_phone{
-    margin: 10px;
+html, body {
+	height: 100%;
+	padding-top: 30px;
+}
+.wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -60px; /* the bottom margin is the negative value of the footer's height */
+}
+
+.footer, .push {
+	height: 60px; /* .push must be the same height as .footer */
+}
+
+footer {
+    color: #666;
+    background: #222;
+    padding: 17px 0 18px 0;
+    border-top: 1px solid #000;
+}
+
+footer a {
+    color: #999;
+}
+
+footer a:hover {
+    color: #efefef;
 }
