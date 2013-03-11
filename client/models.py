@@ -1,5 +1,4 @@
 from django.db import models
-from serializers import ModelSerializer
 
 class Client(models.Model):
     name = models.CharField('Nome', max_length=100)
@@ -62,7 +61,3 @@ class Phone(models.Model):
 
     class Meta:
         ordering = ['number']
-
-class ClientSerializer(ModelSerializer):
-    class Meta:
-        model = Client

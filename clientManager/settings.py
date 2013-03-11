@@ -109,7 +109,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'client',
     'annoying',
-    'serializers',
+#    'serializers',
 )
 
 # A sample logging configuration. The only tangible logging
