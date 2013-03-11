@@ -20,7 +20,9 @@ def create_client(request):
         form = ClientForm(request.POST)
         if form.is_valid():
             c = form.save()
-            c.phone_set.create(number=request.POST['phone'])
+            for i in range(2):
+                p = 'phone'+i.__str__()
+                c.phone_set.create(number=request.POST[p])
             c.save()
             return HttpResponseRedirect('/')
     else:
@@ -81,13 +83,14 @@ def export(request):
 
     clients = Client.objects.filter()
     writer = csv.writer(response)
-    writer.writerow(['Nome', 'Sexo', 'Data de Nascimento', 'Email', 'CPF', 'Endereco'])
+    writer.writerow(['Nome', 'Sexo', 'Data de Nascimento', 'Email', 'Fones', 'CPF', 'Endereco'])
     for client in clients:
         name = client.name.encode('utf-8')
         sex = client.sex.encode('utf-8')
         email = client.email.encode('utf-8')
         cpf = client.cpf.encode('utf-8')
+        phone = client.get_phones()
         ad = client.address
-        writer.writerow([name, sex, client.birthday, email, cpf, client.address])
+        writer.writerow([name, sex, client.birthday, email, phone, cpf, client.address])
 
     return response

@@ -6,11 +6,22 @@
             <table>
                 {{ form.as_table }}
                 <tr>
-                    <th><label for="id_phone">Telefone</label></th>
-                    <td><input name="phone" type="text" id="id_phone"></td>
+                    <th><label for="id_phone0">Telefone</label></th>
+                    <td><input name="phone0" type="text" id="id_phone0"></td>
+                </tr>
+
+                <tr id="phone1" class="no_display">
+                    <th><label for="id_phone1">Telefone</label></th>
+                    <td><input name="phone1" type="text" id="id_phone1"></td>
+                </tr>
+
+                <tr id="phone2" class="no_display">
+                    <th><label for="id_phone2">Telefone</label></th>
+                    <td><input name="phone2" type="text" id="id_phone2"></td>
                 </tr>
             </table>
 
+            <a id="add_phone">Adicionar Telefone</a>
             <a href="/address/">Cadastrar endereço</a><br>
             <input type="submit" value="{{ button }}" class="btn btn-small btn-success">
         </form>

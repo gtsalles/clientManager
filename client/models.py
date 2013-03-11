@@ -28,7 +28,7 @@ class Address(models.Model):
     city = models.ForeignKey('City')
 
     def __unicode__(self):
-        return u'%s %s, %s, %s' % ("Rua", self.street, self.number, self.district)
+        return u'%s %s, %s, %s - %s' % (self.street, self.number, self.district, self.city, self.city.state)
 
     class Meta:
         ordering = ['street', 'number']

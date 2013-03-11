@@ -7,15 +7,20 @@
         {% endif %}
         {% if clients %}
             <table id="table-clients" class="table table-bordered table-condensed table-hover">
-                <caption>Lista de clientes</caption>
+                <caption><h3>Lista de clientes</h3></caption>
                 <thead>
                     <tr>
-                        <td>Nome</td>
-                        <td>Sexo</td>
-                        <td>Data de nascimento</td>
-                        <td>Email</td>
-                        <td>CPF</td>
-                        <td>Endereço</td>
+                        <th>Nome</th>
+                        <th>Sexo</th>
+                        <th>Data de nascimento</th>
+                        <th>Email</th>
+{#                        <th>Telefones</th>#}
+                        <th>CPF</th>
+                        <th>Rua</th>
+                        <th>Numero</th>
+                        <th>Bairro</th>
+                        <th>Zona</th>
+                        <th>Cidade</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,14 +30,44 @@
                             <td>{{ client.sex }}</td>
                             <td>{{ client.birthday }}</td>
                             <td>{{ client.email }}</td>
+{#                            <td>{{ client.get_phones }}</td>#}
                             <td>{{ client.cpf }}</td>
-                            <td>{{ client.address }}</td>
+{#                            <td>{{ client.address }}</td>#}
+                            <td>{{ client.address.street }}</td>
+                            <td>{{ client.address.number }}</td>
+                            <td>{{ client.address.district }}</td>
+                            <td>{{ client.address.zone }}</td>
+                            <td>{{ client.address.city }}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
+                <tfoot class="no_display">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tfoot>
             </table>
         {% endif %}
 
+        <br><p><strong>Filtros:</strong></p>
+
+        <ul>
+            <li><p>Sexo:</p>
+            <p id="sex_filter"></p></li>
+            <li><p>Bairro:</p>
+            <p id="dist_filter"></p></li>
+            <li><p>Cidade:</p>
+            <p id="city_filter"></p></li>
+            <li><p>Zona:</p>
+            <p id="zone_filter"></p></li>
+        </ul>
+
         <a href="/client/">Cadastrar Cliente</a>
+        <a href="/export/">Exportar lista de clientes</a>
     </section>
 {% endblock %}
