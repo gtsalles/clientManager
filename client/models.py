@@ -10,6 +10,10 @@ class Client(models.Model):
     address = models.ForeignKey('Address')
     indicator = models.ForeignKey('Client', blank=True, null=True, verbose_name='Quem o indicou?')
 
+    def get_phones(self):
+        p = [pp.number for pp in self.phone_set.all()]
+        return u', '.join(p)
+
     def __unicode__(self):
         return self.name
 

@@ -3,7 +3,7 @@
 {% block section %}
     <section>
         {% if client %}
-            <table>
+            <table class="table table-bordered table-condensed table-hover">
                 <thead>
                     <tr>
                         <td>Nome</td>
@@ -27,7 +27,7 @@
                         <td>{{ client.birthday }}</td>
                         <td>{{ client.email }}</td>
                         <td>{{ client.cpf }}</td>
-                        <td>{{ client.phone_set.all }}</td>
+                        <td>{{ client.get_phones }}</td>
                         <td>{{ client.address.street }}</td>
                         <td>{{ client.address.number }}</td>
                         <td>{{ client.address.district }}</td>
