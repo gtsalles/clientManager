@@ -47,6 +47,14 @@ def delete_client(request, id):
 
 # CRUD Endereco
 
+@render_to('address/list.html')
+def list_addresses(request):
+    return {'addresses': Address.objects.all()}
+
+@render_to('address/show.html')
+def list_address(request, id):
+    return {'address': Address.objects.get(id=id)}
+
 @render_to('address/create.html')
 def address(request):
     if request.method == 'POST':

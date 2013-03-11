@@ -38,8 +38,10 @@
                 </tbody>
             </table>
 
-            <a href="/client/edit/{{ client.id }}">Editar Cliente</a>
-            <a href="/client/delete/{{ client.id }}">Excluir cliente</a>
+            <div class="text-center">
+                <a class="btn btn-small btn-info" href="/client/edit/{{ client.id }}">Editar Cliente</a>
+                <a class="btn btn-small btn-info" href="/client/delete/{{ client.id }}">Excluir cliente</a>
+            </div>
         {% endif %} 
     </section>
 {% endblock %}

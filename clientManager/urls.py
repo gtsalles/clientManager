@@ -22,7 +22,10 @@ urlpatterns = patterns('',
     url(r'^client/edit/(\d+)/$', views.edit_client),
     url(r'^client/delete/(\d+)/$', views.delete_client),
 
+    # Address
     url(r'^address/$', views.address),
+    url(r'^list/$', views.list_addresses),
+    url(r'^show-address/(\d+)/$', views.list_address),
     url(r'^address/edit/(\d+)/$', views.edit_address),
     url(r'^address/delete/(\d+)/$', views.delete_address),
 

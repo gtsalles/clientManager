@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block section %}
-    <section class="container wrapper">
+    <section class="container">
         <form action="{{ action }}" method="post">{% csrf_token %}
             <table>
                 {{ form.as_table }}

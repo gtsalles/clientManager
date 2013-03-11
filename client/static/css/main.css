@@ -1,8 +1,8 @@
+body { height: 100%; }
 .right { float: right; }
 .left { float: left; }
 .clear { clear: both; }
 .no_display { display: none; }
-body { height: 100%; }
 
 html, body {
 	height: 100%;
@@ -10,19 +10,17 @@ html, body {
 }
 .wrapper {
 	min-height: 100%;
-	height: auto !important;
 	height: 100%;
-	margin: 0 auto -60px; /* the bottom margin is the negative value of the footer's height */
-}
-
-.footer, .push {
-	height: 60px; /* .push must be the same height as .footer */
+	margin: 0 auto -60px;
 }
 
 footer {
+    position: relative;
+    margin-top:-60px;
+    height: 60px;
     color: #666;
     background: #222;
-    padding: 17px 0 18px 0;
+    padding-top: 20px;
     border-top: 1px solid #000;
 }
 
