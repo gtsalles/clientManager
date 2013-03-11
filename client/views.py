@@ -1,5 +1,5 @@
 from client.forms import ClientForm, AddressForm
-from client.models import Client, Address, ClientSerializer
+from client.models import Client, Address
 from django.http import HttpResponseRedirect, HttpResponse
 from annoying.decorators import render_to
 import csv
